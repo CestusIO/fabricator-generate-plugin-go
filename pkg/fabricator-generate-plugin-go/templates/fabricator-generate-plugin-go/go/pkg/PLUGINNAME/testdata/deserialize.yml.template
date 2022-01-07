@@ -1,0 +1,8 @@
+!!pathreplace PLUGINNAME {{.PluginComponent.Spec.PluginName}}
+apiVersion: fabricator.cestus.io/v1alpha1
+kind: Config
+components:
+- name: "{{.PluginComponent.Spec.PluginName}}"
+  generator: {{.PluginComponent.Spec.PluginName}}
+  spec:
+    exampleValue: "{{.PluginComponent.Spec.PluginName}}"

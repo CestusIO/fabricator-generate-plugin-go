@@ -1,0 +1,36 @@
+!!pathreplace PLUGINNAME {{.PluginComponent.Spec.PluginName}}
+{{ CodeSectionFileHeader | ToGoComment }}
+
+package {{.PluginComponent.Spec.PluginName | ToGoPackageName}}_test
+
+
+import (
+	"os"
+
+	. "github.com/onsi/ginkgo/v2"
+	. "github.com/onsi/gomega"
+	"{{.GoModule}}/pkg/{{.PluginComponent.Spec.PluginName}}"
+)
+
+var _ = Describe("Config", func() {
+	It("Deserializes a fabricator config", func() {
+		file, err := os.Open("./testdata/deserialize.yml")
+		Expect(err).ToNot(HaveOccurred())
+		config, err := {{.PluginComponent.Spec.PluginName | ToGoPackageName}}.LoadPluginConfig(file)
+		Expect(err).ToNot(HaveOccurred())
+		expected := {{.PluginComponent.Spec.PluginName | ToGoPackageName}}.PluginConfig{
+			ApiVersion: "fabricator.cestus.io/v1alpha1",
+			Kind:       "Config",
+			Components: []{{.PluginComponent.Spec.PluginName | ToGoPackageName}}.PluginComponent{
+				{
+					Name:      "{{.PluginComponent.Spec.PluginName}}",
+					Generator: "{{.PluginComponent.Spec.PluginName}}",
+					Spec: {{.PluginComponent.Spec.PluginName | ToGoPackageName}}.Spec{
+						ExampleValue: "{{.PluginComponent.Spec.PluginName}}",
+					},
+				},
+			},
+		}
+		Expect(config).To(Equal(expected))
+	})
+})

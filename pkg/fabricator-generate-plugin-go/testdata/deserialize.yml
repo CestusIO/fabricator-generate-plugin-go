@@ -1,0 +1,8 @@
+apiVersion: fabricator.cestus.io/v1alpha1
+kind: Config
+components:
+  - name: "fabricator-generate-plugin-go"
+    generator: fabricator-generate-plugin-go
+    spec:
+      pluginName: fabricator-generate-plugin-go
+      isGenerationPlugin: true
