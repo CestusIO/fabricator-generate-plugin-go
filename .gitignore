@@ -1,5 +1,6 @@
 // region CODE_REGION(Common)
 bin/
+dist/
 .vscode/
 .devcontainer/devcontainer.json
 .devcontainer/Dockerfile
@@ -7,4 +8,5 @@ bin/
 .env
 tools/bin
 __debug_bin
+buildhelper.tmp
 // endregion

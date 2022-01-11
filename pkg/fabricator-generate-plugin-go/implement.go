@@ -12,8 +12,8 @@ import (
 
 	"code.cestus.io/libs/codegenerator/pkg/templating"
 
+	"code.cestus.io/libs/buildinfo"
 	"code.cestus.io/tools/fabricator/pkg/fabricator"
-	"code.cestus.io/tools/fabricator/pkg/genericclioptions"
 	"code.cestus.io/tools/fabricator/pkg/helpers"
 )
 
@@ -39,11 +39,11 @@ func (p *plugin) generationContexts(ctx context.Context, io fabricator.IOStreams
 	var contexts []interface{}
 	for _, component := range p.pluginConfig.Components {
 		contexts = append(contexts, &struct {
-			CodeGenerator   genericclioptions.BuildInfo
+			CodeGenerator   buildinfo.BuildInfo
 			GoModule        string
 			PluginComponent PluginComponent
 		}{
-			CodeGenerator:   genericclioptions.GetVersion(),
+			CodeGenerator:   buildinfo.ProvideBuildInfo(),
 			GoModule:        p.GoModule(),
 			PluginComponent: component,
 		})
