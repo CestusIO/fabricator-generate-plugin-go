@@ -74,7 +74,9 @@ func (p *plugin) Generate(ctx context.Context, io fabricator.IOStreams, patterns
 			generatedFile, _ = filepath.Rel(p.Root(), generatedFile)
 			fmt.Fprintf(io.Out, "%s\n", generatedFile)
 		}
-
+		if err = executor.Run(ctx, "go", "mod", "tidy"); err != nil {
+			fmt.Fprintf(io.Out, "go mod tidy failed: %s\n", err.Error())
+		}
 		for _, generationCommand := range generationCommands {
 			if err = executor.Run(ctx, generationCommand[0], generationCommand[1:]...); err != nil {
 				return fmt.Errorf("failed to run template generation commands for project: %s", err)

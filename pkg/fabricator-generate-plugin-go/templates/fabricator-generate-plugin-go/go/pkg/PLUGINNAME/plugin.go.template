@@ -11,7 +11,7 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
-	"code.cestus.io/tools/fabricator"
+	"code.cestus.io/tools/fabricator/pkg/fabricator"
 	{{ if .PluginComponent.Spec.IsGenerationPlugin }}
 	"{{.GoModule}}/pkg/{{.PluginComponent.Spec.PluginName}}/templates"
 	"code.cestus.io/tools/fabricator/pkg/helpers"

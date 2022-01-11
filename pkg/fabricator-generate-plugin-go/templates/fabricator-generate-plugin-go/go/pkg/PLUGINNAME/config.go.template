@@ -6,7 +6,7 @@ package {{.PluginComponent.Spec.PluginName | ToGoPackageName}}
 import (
     "fmt"
     "io"
-	"code.cestus.io/tools/fabricator"
+	"code.cestus.io/tools/fabricator/pkg/fabricator/pkg/fabricator"
 	"gopkg.in/yaml.v3"
 )
 

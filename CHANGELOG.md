@@ -5,6 +5,12 @@ This CHANGELOG is a format conforming to [keep-a-changelog](https://github.com/o
 It is generated with git-chglog -o CHANGELOG.md
 
 
-<a name="unreleased"></a>
-## unreleased
+<a name="v0.1.0"></a>
+## v0.1.0
+
+### Feat
+
+* add version.go generation
+* use code.cestus.io/libs/buildinfo
+* add plugin generation code
 
