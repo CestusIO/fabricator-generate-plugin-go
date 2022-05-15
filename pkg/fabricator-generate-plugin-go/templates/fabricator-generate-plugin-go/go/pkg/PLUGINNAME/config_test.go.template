@@ -9,7 +9,7 @@ import (
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	"{{.GoModule}}/pkg/{{.PluginComponent.Spec.PluginName}}"
+	{{.PluginComponent.Spec.PluginName | ToGoPackageName}} "{{.GoModule}}/pkg/{{.PluginComponent.Spec.PluginName}}"
 )
 
 var _ = Describe("Config", func() {
@@ -26,7 +26,9 @@ var _ = Describe("Config", func() {
 					Name:      "{{.PluginComponent.Spec.PluginName}}",
 					Generator: "{{.PluginComponent.Spec.PluginName}}",
 					Spec: {{.PluginComponent.Spec.PluginName | ToGoPackageName}}.Spec{
-						ExampleValue: "{{.PluginComponent.Spec.PluginName}}",
+						PinDependency:      nil,
+						ReplaceDependency:  nil,
+						ToolDependency:     nil,
 					},
 				},
 			},

@@ -1,12 +1,19 @@
 apiVersion: fabricator.cestus.io/v1alpha1
 kind: Config
 components:
-  - name: "fabricator-generate-plugin-go"
+  - name: fabricator-generate-plugin-go
+    generator: fabricator-generate-go
+    spec:
+      packageName: fabricator-generate-plugin-go
+  - name: fabricator-generate-plugin-go
     generator: fabricator-generate-project-go
     spec:
       goModule: code.cestus.io/tools/fabricator-generate-plugin-go
-  - name: "fabricator-generate-plugin-go"
-    generator: fabricator-generate-plugin-go
-    spec:
-      pluginName: fabricator-generate-plugin-go
-      isGenerationPlugin: true
+      repoURL: https://github.com/CestusIO/fabricator-generate-plugin-go
+      isTool: true
+  ## do not generate ourselves this creates problems in ci
+  # - name: fabricator-generate-plugin-go
+  #   generator: fabricator-generate-plugin-go
+  #   spec:
+  #     pluginName: fabricator-generate-plugin-go
+  #     isGenerationPlugin: true

@@ -5,13 +5,17 @@
 package {{.PluginComponent.Spec.PluginName | ToGoPackageName}}
 
 import (
+	"context"
 	"os"
+	"path"
+
+    "code.cestus.io/libs/codegenerator/pkg/templating"
+	"code.cestus.io/tools/fabricator/pkg/fabricator"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
+
 	"{{.GoModule}}/pkg/{{.PluginComponent.Spec.PluginName}}/templates"
-    "code.cestus.io/libs/codegenerator/pkg/templating"
-	"code.cestus.io/tools/fabricator/pkg/fabricator"
 )
 
 var _ = Describe("Generation", func() {
@@ -19,13 +23,19 @@ var _ = Describe("Generation", func() {
 		ctx := context.Background()
 		packProvider := templating.NewPackProvider()
 		packProvider.RegisterProvider(templating.NewEmbededPackProvider(templates.GetTemplates()))
-		io := fabricator.NewTestIOStreamsDiscard()
+		io := fabricator.NewGinkoTestIOStreams()
 		file, err := os.Open("./testdata/deserialize.yml")
 		Expect(err).ToNot(HaveOccurred())
 		config, err := LoadPluginConfig(file)
 		Expect(err).ToNot(HaveOccurred())
 		root, err := os.MkdirTemp("./testdata", "generation")
 		Expect(err).ToNot(HaveOccurred())
+		// add go mod
+		gomod, err := os.Create(path.Join(root, "go.mod"))
+		Expect(err).ToNot(HaveOccurred())
+		defer gomod.Close()
+		gomod.WriteString("module example.com/testmodule\n")
+		gomod.WriteString("go 1.18\n")
 		plugin, err := newPlugin(ctx, io, config, root, packProvider)
 		Expect(err).ToNot(HaveOccurred())
 		err = plugin.Generate(ctx, io)

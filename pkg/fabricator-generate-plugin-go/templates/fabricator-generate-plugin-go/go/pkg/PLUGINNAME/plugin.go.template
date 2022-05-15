@@ -14,7 +14,6 @@ import (
 	"code.cestus.io/tools/fabricator/pkg/fabricator"
 	{{ if .PluginComponent.Spec.IsGenerationPlugin }}
 	"{{.GoModule}}/pkg/{{.PluginComponent.Spec.PluginName}}/templates"
-	"code.cestus.io/tools/fabricator/pkg/helpers"
 	{{ end }}
 )
 //PluginName is the name of the plugin
@@ -67,6 +66,7 @@ func (o *options) run(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
+	defer f.Close()
 	config, err := LoadPluginConfig(f)
 	if err != nil {
 		return err
@@ -75,8 +75,8 @@ func (o *options) run(ctx context.Context) error {
    fmt.Fprintf(o.Out, "Loading from %s\n", path)
 {{ if .PluginComponent.Spec.IsGenerationPlugin }}
 	templating.CodeGeneratorName = PluginName
-	packProvider := helpers.NewPackProvider()
-	packProvider.RegisterProvider(helpers.NewEmbededPackProvider(templates.GetTemplates()))
+	packProvider := templating.NewPackProvider()
+	packProvider.RegisterProvider(templating.NewEmbededPackProvider(templates.GetTemplates()))
 	plugin, err := newPlugin(ctx, o.IOStreams, config, o.RootOptions.RootDirectory, packProvider)
 {{ else}}
 	_, err = newPlugin(ctx, o.IOStreams, config, o.RootOptions.RootDirectory)

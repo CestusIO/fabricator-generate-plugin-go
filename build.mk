@@ -15,11 +15,11 @@ APPLICATIONS            := fabricator-generate-plugin-go
 # Buildtime of a version will be passed as ldflag to go compiler
 VERSION_DATE            ?= $(shell date -u +'%Y-%m-%dT%H:%M:%SZ')
 # Default version
-svermakerBuildVersion   ?= 
-# GOPRIVATE will disable go cache
-export GOPRIVATE        := code.cestus.io
-# default docker version 
+svermakerBuildVersion   ?= unreleased
 svermakerHelmLabel 	    ?= unreleased
 goModuleBuildVersion    ?= unreleased
+# GOPRIVATE will disable go cache
+export GOPRIVATE        := code.cestus.io
+
 # additional LDFGLAGS (e.g. -w -s)
 ADDITIONALLDFLAGS       ?= 

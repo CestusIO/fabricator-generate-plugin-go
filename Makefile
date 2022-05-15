@@ -45,21 +45,24 @@ ifneq ($(HAS_GO),)
 endif
 
 LDFLAGS += $(ADDITIONALLDFLAGS)
-LDFLAGS += -X code.cestus.io/libs/pkg/buildinfo.version=${svermakerBuildVersion}
-LDFLAGS += -X code.cestus.io/libs/pkg/buildinfo.buildDate=$(VERSION_DATE)
+LDFLAGS += -X code.cestus.io/libs/buildinfo.version=${goModuleBuildVersion}
+LDFLAGS += -X code.cestus.io/libs/buildinfo.buildDate=$(VERSION_DATE)
 export LDFLAGS
 
 # building platform string
 b_platform = --> Building $(APP)-$(GOOS)-$(GOARCH)\n
 # building platform command
-b_command = export GOOS=$(GOOS); export GOARCH=$(GOARCH); go build -ldflags "$(LDFLAGS) -X code.cestus.io/libs/pkg/buildinfo.name=$(APP)" -o $(BINDIR)/$(APP)-$(GOOS)-$(GOARCH)$(BINARY_$(GOOS)_ENDING) ./cmd/$(APP)/ ;
+b_command = export GOOS=$(GOOS); export GOARCH=$(GOARCH); go build -ldflags "$(LDFLAGS) -X code.cestus.io/libs/buildinfo.name=$(APP)" -o $(BINDIR)/$(APP)-$(GOOS)-$(GOARCH)$(BINARY_$(GOOS)_ENDING) ./cmd/$(APP)/ ;
 # for each iterations use build message
 fb_platforms =$(foreach GOOS, $(PLATFORMS),$(foreach GOARCH, $(ARCHITECTURES),$(foreach APP, $(APPLICATIONS),$(b_platform))))
 # foreach iterations to do multi platform build
 fb_command = $(foreach GOOS, $(PLATFORMS),\
 	$(foreach GOARCH, $(ARCHITECTURES),$(foreach APP, $(APPLICATIONS),$(b_command))))
 
-all: compile
+.PHONY: all
+## Builds for all platforms and architectures (including generation and setup and tests)
+all: generate build_all test
+	
 # No documentation; Installs tools
 setup:
 	
@@ -103,7 +106,7 @@ build_all: install_tools build_all_ci
 
 .PHONY: build_all_ci
 ## Builds for all platforms and architectures (including generation and setup)
-build_all_ci: setup generate compile_all compile_absolute_everything changelog
+build_all_ci: setup compile_all compile_absolute_everything changelog
 
 .PHONY: compile_absolute_everything
 ## Builds all files even those not part of the desired outputs

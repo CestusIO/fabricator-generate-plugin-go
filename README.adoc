@@ -1,7 +1,4 @@
 
-= Templates
+= fabricator-generate-plugin-go
 
-You can add templates into this Folder. 
-
-This file also serves as an embedded file to prevent a "nothing to embed" error in new generation plugins
-
+fabricator plugin to generate plugins
