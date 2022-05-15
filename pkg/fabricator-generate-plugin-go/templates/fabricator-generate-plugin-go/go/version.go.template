@@ -1,0 +1,22 @@
+{{ CodeSectionFileHeader | ToGoComment }}
+
+package {{.PluginComponent.Spec.PluginName | ToGoPackageName}}
+
+// region CODE_REGION(version)
+import (
+	_ "embed"
+
+	"code.cestus.io/libs/buildinfo"
+)
+
+//go:embed version.yml
+var version string
+
+func init() {
+	buildinfo.GenerateVersionFromVersionYaml(GetVersionYaml(), "{{ .PluginComponent.Spec.PluginName }}")
+}
+
+func GetVersionYaml() []byte {
+	return []byte(version)
+}
+//endregion

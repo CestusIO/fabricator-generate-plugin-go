@@ -1,0 +1,31 @@
+!!pathreplace PLUGINNAME {{.PluginComponent.Spec.PluginName}}
+{{ CodeSectionFileHeader | ToGoComment }}
+
+package main
+
+import (
+	// region CODE_REGION(import)
+	"context"
+	"os"
+
+	_ "{{.GoModule}}"
+	"{{.GoModule}}/pkg/{{.PluginComponent.Spec.PluginName}}"
+	"code.cestus.io/tools/fabricator/pkg/fabricator"
+	"code.cestus.io/tools/fabricator/pkg/cmd/version"
+	"code.cestus.io/tools/fabricator/pkg/helpers"
+	// endregion
+)
+
+func main() {
+	// region CODE_REGION(Main)
+	ctx := context.Background()
+	io := fabricator.NewStdIOStreams()
+	ctx, cancel := helpers.WithCancelOnSignal(ctx, io, fabricator.TerminationSignals...)
+	defer cancel()
+	root := {{.PluginComponent.Spec.PluginName | ToGoPackageName}}.New{{.PluginComponent.Spec.PluginName | ToGoName}}(io, helpers.DefaultFlagParser)
+	root.AddCommand(version.NewCmdVersion(io))
+	if err := root.ExecuteContext(ctx); err != nil {
+		os.Exit(1)
+	}
+	// endregion
+}

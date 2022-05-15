@@ -1,0 +1,4 @@
+
+= fabricator-generate-plugin-go
+
+fabricator plugin to generate plugins

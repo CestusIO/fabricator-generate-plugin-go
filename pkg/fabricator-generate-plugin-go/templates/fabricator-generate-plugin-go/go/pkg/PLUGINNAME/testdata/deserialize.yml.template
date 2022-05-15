@@ -1,0 +1,20 @@
+!!pathreplace PLUGINNAME {{.PluginComponent.Spec.PluginName}}
+apiVersion: fabricator.cestus.io/v1alpha1
+kind: Config
+components:
+- name: "{{.PluginComponent.Spec.PluginName}}"
+  generator: {{.PluginComponent.Spec.PluginName}}
+  spec:
+    pinDependency: 
+#      "github.com/test":
+#        name: "github.com/test"
+#        version: "v1.0.0"
+    replaceDependency:
+#      "github.com/test":
+#        name: "github.com/test"
+#        with: "github.com/test@v1.2.4"
+    toolDependency:
+#        "github.com/test":
+#         name: "github.com/test"
+## Dependencies cannot contain values because tests would inject them into the go.mod and go.sum files as real dependencies
+
