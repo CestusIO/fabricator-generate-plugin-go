@@ -5,12 +5,12 @@ components:
     generator: fabricator-generate-go
     spec:
       packageName: fabricator-generate-plugin-go
-  # - name: fabricator-generate-plugin-go
-  #   generator: fabricator-generate-project-go
-  #   spec:
-  #     goModule: code.cestus.io/tools/fabricator-generate-plugin-go
-  #     repoURL: https://github.com/CestusIO/fabricator-generate-plugin-go
-  #     isTool: true
+  - name: fabricator-generate-plugin-go
+    generator: fabricator-generate-project-go
+    spec:
+      goModule: code.cestus.io/tools/fabricator-generate-plugin-go
+      repoURL: https://github.com/CestusIO/fabricator-generate-plugin-go
+      isTool: true
   ## do not generate ourselves this creates problems in ci
   # - name: fabricator-generate-plugin-go
   #   generator: fabricator-generate-plugin-go
