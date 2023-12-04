@@ -5,6 +5,14 @@ This CHANGELOG is a format conforming to [keep-a-changelog](https://github.com/o
 It is generated with git-chglog -o CHANGELOG.md
 
 
+<a name="v0.3.1"></a>
+## [v0.3.1](https://github.com/CestusIO/fabricator-generate-plugin-go/compare/v0.3.0...v0.3.1)
+
+### Bug Fixes
+
+* pins.go has an invalid code region
+
+
 <a name="v0.3.0"></a>
 ## [v0.3.0](https://github.com/CestusIO/fabricator-generate-plugin-go/compare/v0.2.1...v0.3.0)
 
