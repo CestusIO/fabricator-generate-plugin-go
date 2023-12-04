@@ -7,10 +7,10 @@ package fabricatorgenerateplugingo
 // CODE_REGION(PINS)
 
 var DefaultPins PinDependencies = PinDependencies{
-	"go.opentelemetry.io/otel": {
-		Name:    "go.opentelemetry.io/otel",
-		Version: "v0.20.0",
-	},
+	// "go.opentelemetry.io/otel": {
+	// 	Name:    "go.opentelemetry.io/otel",
+	// 	Version: "v0.20.0",
+	// },
 }
 
 var DefaultReplacements ReplaceDependencies = ReplaceDependencies{
