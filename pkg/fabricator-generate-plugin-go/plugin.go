@@ -18,7 +18,7 @@ import (
 	"code.cestus.io/tools/fabricator-generate-plugin-go/pkg/fabricator-generate-plugin-go/templates"
 )
 
-//PluginName is the name of the plugin
+// PluginName is the name of the plugin
 const PluginName string = "fabricator-generate-plugin-go"
 
 // region CODE_REGION(OPTIONS)
@@ -117,4 +117,5 @@ func NewFabricatorGeneratePluginGo(ioStreams fabricator.IOStreams, flagparser fa
 type Generator interface {
 	Root() string
 	Generate(ctx context.Context, io fabricator.IOStreams, patterns ...string) (err error)
+	RunPostGeneration(ctx context.Context, io fabricator.IOStreams, genCmds ...[]string) error
 }
