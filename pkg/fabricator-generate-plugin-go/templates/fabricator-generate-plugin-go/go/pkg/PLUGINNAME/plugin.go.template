@@ -120,5 +120,6 @@ func New{{.PluginComponent.Spec.PluginName | ToGoName}}(ioStreams fabricator.IOS
 type Generator interface {
 	Root() string
 	Generate(ctx context.Context, io fabricator.IOStreams, patterns ...string) (err error)
+	RunPostGeneration(ctx context.Context, io fabricator.IOStreams, genCmds ...[]string) error
 }
 {{ end}}

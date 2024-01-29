@@ -158,3 +158,16 @@ func newPlugin(ctx context.Context, io fabricator.IOStreams, config PluginConfig
 	plugin.packprovider = packprovider
 	return plugin, err
 }
+
+// region CODE_REGION(GENERATION_POST)
+func (p *plugin) RunPostGeneration(ctx context.Context, io fabricator.IOStreams, pgCmds ...[]string) error {
+	executor := helpers.NewExecutor(p.Root(), io)
+	var err error
+	for _, pgCmd := range pgCmds {
+		if err = executor.Run(ctx, pgCmd[0], pgCmd[1:]...); err != nil {
+			return fmt.Errorf("failed to post generation command: %s", err)
+		}
+	}
+	return err
+}
+//endregion
