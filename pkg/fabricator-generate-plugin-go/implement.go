@@ -137,7 +137,7 @@ func newPlugin(ctx context.Context, io fabricator.IOStreams, config PluginConfig
 	if err != nil {
 		return plugin{}, errors.New("could not deduce gomodule")
 	}
-	//templating.SetCodeGeneratorName("fabricator")
+
 	plugin := plugin{
 		pluginConfig: config,
 		root:         root,
