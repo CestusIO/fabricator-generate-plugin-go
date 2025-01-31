@@ -9,9 +9,9 @@ go 1.23
 // endregion
 
 require (
-	code.cestus.io/libs/buildinfo v0.1.0
+	code.cestus.io/libs/buildinfo v0.1.1
 	code.cestus.io/libs/codegenerator v0.1.0
-	code.cestus.io/tools/fabricator v0.4.2
+	code.cestus.io/tools/fabricator v0.4.3
 	github.com/onsi/ginkgo/v2 v2.22.2
 	github.com/onsi/gomega v1.36.2
 	github.com/spf13/cobra v1.8.1
@@ -20,7 +20,6 @@ require (
 )
 
 require (
-	code.cestus.io/tools/wire v0.7.1 // indirect
 	github.com/Masterminds/goutils v1.1.1 // indirect
 	github.com/Masterminds/semver/v3 v3.2.0 // indirect
 	github.com/Masterminds/sprig/v3 v3.2.3 // indirect
@@ -31,6 +30,7 @@ require (
 	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/google/pprof v0.0.0-20241210010833-40e02aabc2ad // indirect
 	github.com/google/uuid v1.3.0 // indirect
+	github.com/google/wire v0.6.0 // indirect
 	github.com/huandu/xstrings v1.3.3 // indirect
 	github.com/imdario/mergo v0.3.13 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect

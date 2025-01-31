@@ -5,8 +5,16 @@ This CHANGELOG is a format conforming to [keep-a-changelog](https://github.com/o
 It is generated with git-chglog -o CHANGELOG.md
 
 
-<a name="unreleased"></a>
-## [unreleased](https://github.com/CestusIO/fabricator-generate-plugin-go/compare/v0.4.0...unreleased)
+<a name="v0.5.1"></a>
+## [v0.5.1](https://github.com/CestusIO/fabricator-generate-plugin-go/compare/v0.5.0...v0.5.1)
+
+### Bug Fixes
+
+* dependency update
+
+
+<a name="v0.5.0"></a>
+## [v0.5.0](https://github.com/CestusIO/fabricator-generate-plugin-go/compare/v0.4.0...v0.5.0)
 
 ### Chores
 
